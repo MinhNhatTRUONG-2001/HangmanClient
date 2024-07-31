@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.root {
+    background-color: var(--background-color);
+}
+
+:root {
+    --primary-color: #62CDFF;
+    --secondary-color: #97DEFF;
+    --tertiary-color: #AA77FF;
+    --background-color: #C9EEFF;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", sans-serif;
+}

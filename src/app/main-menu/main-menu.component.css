@@ -1,0 +1,24 @@
+main {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 54px;
+}
+
+button.primary-button {
+    width: 25%;
+    height: 70px;
+    margin: 20px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    font-size: 24px;
+    color: azure;
+}
+
+footer {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
