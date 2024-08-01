@@ -10,5 +10,5 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './main-menu.component.css'
 })
 export class MainMenuComponent {
-
+  title = 'HANGMAN'
 }
