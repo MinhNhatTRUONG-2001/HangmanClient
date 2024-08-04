@@ -1,5 +1,11 @@
-<section>Word to be solved</section>
+@if (word && blanks) {
+    <section class="blanks">{{ blanks }}</section>
+}
 <br><br><br><br><br><br>
-<section>Congrats & Next round button</section>
+<section class="congrats">Congratulation! You solved the word. <button mat-flat-button class="primary">Next round</button></section>
 <br><br><br><br><br><br>
-<section>Letter buttons</section>
+<section class="letter-buttons">
+    @for (l of letters; track l) {
+        <button mat-flat-button class="secondary" (click)="checkLetter(l)">{{ l }}</button>
+    }
+</section>

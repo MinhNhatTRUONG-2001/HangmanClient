@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
@@ -9,5 +9,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrl: './round-info.component.css'
 })
 export class RoundInfoComponent {
-
+  @Input() lives!: number
+  @Input() round!: number
+  @Input() topic!: string
 }

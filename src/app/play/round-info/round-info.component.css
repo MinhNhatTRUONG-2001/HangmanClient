@@ -1,3 +1,7 @@
 mat-grid-list {
     background-color: var(--tertiary-color);
+    font-size: 20px;
+}
+strong.low-lives {
+    color: red;
 }

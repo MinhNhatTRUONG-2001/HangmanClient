@@ -1,9 +1,13 @@
-<app-round-info></app-round-info>
+@if (currentWord) {
+    <app-round-info [round]="currentRound" [lives]="lives" [topic]="currentWord.topic.name"></app-round-info>
+}
 <mat-grid-list cols="2" rowHeight="10:9">
     <mat-grid-tile colspan="1" rowspan="1">
         <app-figure></app-figure>
     </mat-grid-tile>
     <mat-grid-tile colspan="1" rowspan="1">
-        <app-word-letters></app-word-letters>
+        @if (currentWord) {
+            <app-word-letters [word]="currentWord.word"></app-word-letters>
+        }
     </mat-grid-tile>
 </mat-grid-list>

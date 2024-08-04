@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-figure',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './figure.component.css'
 })
 export class FigureComponent {
-
+  @Input() lives!: number
 }

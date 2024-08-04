@@ -1,0 +1,28 @@
+.blanks {
+    font-size: 30px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.congrats {
+    font-size: 24px;
+    text-align: center;
+}
+
+button.primary {
+    height: 70px;
+    margin: 15px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    font-size: 24px;
+    color: azure;
+}
+
+button.secondary {
+    height: 50px;
+    margin: 10px;
+    background-color: var(--tertiary-color);
+    border-radius: 10px;
+    font-size: 20px;
+    color: azure;
+}

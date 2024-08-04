@@ -1,5 +1,12 @@
 <mat-grid-list cols="3" rowHeight="10:1">
-    <mat-grid-tile colspan="1" rowspan="1">Remaining lives</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">Round 'n'th</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">Topic</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">Lives:&nbsp;
+        @if (lives < 3) {
+            <strong class="low-lives">{{ lives }}</strong>
+        }
+        @else {
+            <strong>{{ lives }}</strong>
+        }
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">Round:&nbsp;<strong>{{ round }}</strong></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">Topic:&nbsp;<strong>{{ topic }}</strong></mat-grid-tile>
 </mat-grid-list>
