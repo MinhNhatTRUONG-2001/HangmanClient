@@ -30,7 +30,8 @@ export class PlayComponent {
       this.wordList = data
       this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)]
       this.wordList = this.wordList.filter(w => w !== this.currentWord)
-      //console.log(this.currentWord)
+      //console.log(this.wordList.length)
+      //console.log(this.solvedWordList.length)
   })
     .catch(e => console.log(e))
   }

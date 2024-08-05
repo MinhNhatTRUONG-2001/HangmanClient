@@ -1,11 +1,12 @@
 @if (word && blanks) {
-    <section class="blanks">{{ blanks }}</section>
+    <section id="blanks">{{ blanks }}</section>
 }
-<br><br><br><br><br><br>
-<section class="congrats">Congratulation! You solved the word. <button mat-flat-button class="primary">Next round</button></section>
-<br><br><br><br><br><br>
-<section class="letter-buttons">
+<section id="game-status">
+    {{ gameStatus }} 
+    <button mat-flat-button class="primary" [hidden]="hiddenNextRoundButton" (click)="nextRound()">Next round</button>
+</section>
+<section id="letter-buttons">
     @for (l of letters; track l) {
-        <button mat-flat-button class="secondary" (click)="checkLetter(l)">{{ l }}</button>
+        <button mat-flat-button class="secondary" (click)="checkLetter($event, l)">{{ l }}</button>
     }
 </section>
