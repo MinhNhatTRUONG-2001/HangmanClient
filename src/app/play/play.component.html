@@ -7,7 +7,13 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="1" rowspan="1">
         @if (currentWord) {
-            <app-word-letters [word]="currentWord.word"></app-word-letters>
+            <app-word-letters
+                [totalWords]="totalWords"
+                [word]="currentWord.word"
+                [lives]="lives"
+                [round]="currentRound"
+                [startDatetime]="startDatetime"
+                (decreaseLivesEvent)="decreaseLives()"></app-word-letters>
         }
     </mat-grid-tile>
 </mat-grid-list>

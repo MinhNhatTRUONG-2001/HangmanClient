@@ -4,6 +4,14 @@
 <section id="game-status">
     {{ gameStatus }} 
     <button mat-flat-button class="primary" [hidden]="hiddenNextRoundButton" (click)="nextRound()">Next round</button>
+    <div [hidden]="hiddenResultSubmission">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <button mat-flat-button class="primary" (click)="submitResult()">Submit</button>
+    </div>
+    
 </section>
 <section id="letter-buttons">
     @for (l of letters; track l) {

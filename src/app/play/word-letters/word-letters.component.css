@@ -1,3 +1,4 @@
+
 section {
     padding-top: 5%;
     padding-bottom: 5%;
@@ -19,7 +20,7 @@ section {
 }
 
 button.primary {
-    height: 70px;
+    height: 60px;
     margin: 15px;
     background-color: var(--primary-color);
     border-radius: 10px;

@@ -15,24 +15,28 @@ import { Word } from './word';
 })
 export class PlayComponent {
   wordList: Word[] = []
+  totalWords: number = -1
   solvedWordList: Word[] = []
   currentWord!: Word
   lives: number = 6
   currentRound: number = 1
-  incorrectGuessesPerRound: number[] = []
   startDatetime: Date = new Date()
-  endDatetime: Date = new Date()
 
   constructor() {
     fetch(`${serverUrl}/word/all`)
     .then(res => res.json())
     .then(data => {
       this.wordList = data
+      this.totalWords = this.wordList.length
       this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)]
       this.wordList = this.wordList.filter(w => w !== this.currentWord)
       //console.log(this.wordList.length)
       //console.log(this.solvedWordList.length)
   })
     .catch(e => console.log(e))
+  }
+
+  decreaseLives() {
+    this.lives--
   }
 }
