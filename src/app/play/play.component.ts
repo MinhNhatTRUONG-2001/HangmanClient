@@ -6,6 +6,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { serverUrl } from '../server';
 import { Word } from './word';
 
+export const maxLives = 6
+
 @Component({
   selector: 'app-play',
   standalone: true,
@@ -18,7 +20,7 @@ export class PlayComponent {
   totalWords: number = -1
   solvedWordList: Word[] = []
   currentWord!: Word
-  lives: number = 6
+  lives: number = maxLives
   currentRound: number = 1
   startDatetime: Date = new Date()
 
@@ -38,5 +40,12 @@ export class PlayComponent {
 
   decreaseLives() {
     this.lives--
+  }
+
+  nextRound() {
+    this.lives = maxLives
+    this.currentRound++
+    this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)]
+    this.wordList = this.wordList.filter(w => w !== this.currentWord)
   }
 }

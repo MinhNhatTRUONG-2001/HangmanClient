@@ -13,6 +13,7 @@
                 [lives]="lives"
                 [round]="currentRound"
                 [startDatetime]="startDatetime"
+                (nextRoundEvent)="nextRound()"
                 (decreaseLivesEvent)="decreaseLives()"></app-word-letters>
         }
     </mat-grid-tile>

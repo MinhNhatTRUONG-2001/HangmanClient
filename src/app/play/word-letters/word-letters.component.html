@@ -7,11 +7,11 @@
     <div [hidden]="hiddenResultSubmission">
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput>
+            <input id="name" matInput>
         </mat-form-field>
-        <button mat-flat-button class="primary" (click)="submitResult()">Submit</button>
+        <button mat-flat-button class="primary" (click)="submitResult($event)">Submit</button>
     </div>
-    
+    <div class="error-message">{{ errorMessage }}</div>
 </section>
 <section id="letter-buttons">
     @for (l of letters; track l) {
