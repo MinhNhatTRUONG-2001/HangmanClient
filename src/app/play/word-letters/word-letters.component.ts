@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -14,7 +14,7 @@ import { serverUrl } from '../../server';
   templateUrl: './word-letters.component.html',
   styleUrl: './word-letters.component.css'
 })
-export class WordLettersComponent implements OnChanges {
+export class WordLettersComponent implements AfterViewInit, OnChanges {
   @Input() totalWords!: number
   letters: string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
   @Input() word!: string
@@ -30,8 +30,14 @@ export class WordLettersComponent implements OnChanges {
   incorrectGuessesPerWord: number[] = []
   @Input() startDatetime!: Date
   endDatetime!: Date
+  tertiaryColor!: string
 
   constructor(private elRef: ElementRef<HTMLElement>, private router: Router) { }
+
+  ngAfterViewInit(): void {
+    const computedStyle = getComputedStyle(this.elRef.nativeElement)
+    this.tertiaryColor = computedStyle.getPropertyValue('--tertiary-color') // light violet
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['word'] && changes['word'].currentValue !== changes['word'].previousValue) {
@@ -118,7 +124,7 @@ export class WordLettersComponent implements OnChanges {
         res.json().then(data => {
           this.errorMessage = data.message
           submitButton.disabled = false
-          submitButton.style.backgroundColor = '#AA77FF' //light violet
+          submitButton.style.backgroundColor = this.tertiaryColor
         })
       }
       else {
@@ -146,7 +152,7 @@ export class WordLettersComponent implements OnChanges {
     elements.forEach(e => {
       const button = e as HTMLButtonElement
       button.disabled = action === 'disable' ? true : false
-      button.style.backgroundColor = action === 'disable' ? 'gray' : '#AA77FF' //light violet
+      button.style.backgroundColor = action === 'disable' ? 'gray' : this.tertiaryColor
     })
   }
 }
