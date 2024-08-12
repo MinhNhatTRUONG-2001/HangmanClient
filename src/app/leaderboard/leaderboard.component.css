@@ -12,12 +12,14 @@ h2 {
     font-size: 30px;
 }
 
-table {
-    padding-left: 1vw;
-    padding-right: 1vw;
-    background-color: var(--background-color)
+mat-table, mat-paginator {
+    background-color: var(--background-color);
 }
 
-tr:hover {
+mat-header-cell, mat-cell {
+    justify-content: center;
+}
+
+mat-row:hover {
     background-color: mediumturquoise;
 }

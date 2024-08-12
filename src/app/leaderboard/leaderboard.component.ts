@@ -1,29 +1,38 @@
-import { Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { Component, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { serverUrl } from '../server';
 import { PlayResult } from './play-result';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-leaderboard',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule],
   templateUrl: './leaderboard.component.html',
   styleUrl: './leaderboard.component.css'
 })
 export class LeaderboardComponent {
   displayedColumns: string[] = ['rank', 'playerName', 'startDatetime', 'correctWords', 'totalIncorrectGuesses', 'timePlayed']
-  dataSource: PlayResult[] = []
+  dataSource = new MatTableDataSource<PlayResult>()
+  @ViewChild(MatPaginator) paginator!: MatPaginator
+  @ViewChild(MatSort) sort!: MatSort
 
   constructor() {
     fetch(`${serverUrl}/leaderboard/top-1000`)
     .then(res => res.json())
     .then(data => {
-      this.dataSource = data.map((result: PlayResult) => ({
+      this.dataSource.data = data.map((result: PlayResult) => ({
         ...result,
         startDatetime: new Date(result.startDatetime),
         endDatetime: new Date(result.endDatetime)
       }))
     })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   totalIncorrectGuessesReduce(total: number, value: number) {
