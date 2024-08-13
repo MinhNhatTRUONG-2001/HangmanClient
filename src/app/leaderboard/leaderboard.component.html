@@ -1,9 +1,49 @@
 <main>
     <h1>LEADERBOARD</h1>
-    <h2>Top 1000</h2>
+    @if(searchType === 'top-1000') {
+        <h2>Top 1000</h2>
+    }
+    @else if(searchType === 'search') {
+        <h2>Search result</h2>
+    }
+    <form [formGroup]="searchForm" (ngSubmit)="searchResults()">
+        <mat-form-field appearance="outline" hintLabel="Max. 50 characters">
+            <mat-label>Player Name</mat-label>
+            <input id="playerName" formControlName="playerName" matInput #playerNameInput>
+            <mat-hint align="end">{{ playerNameInput.value.length }}/50</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="startDate" placeholder="Start">
+                <input matEndDate formControlName="endDate" placeholder="End">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            @if (searchForm.controls.startDate.hasError('matStartDateInvalid')) {
+            <mat-error>Invalid start date</mat-error>
+            }
+            @if (searchForm.controls.endDate.hasError('matEndDateInvalid')) {
+            <mat-error>Invalid end date</mat-error>
+            }
+        </mat-form-field>
+        <button id="search" mat-button type="submit">Search</button>
+        <mat-icon
+            fontIcon="info"
+            matTooltip="If all fields are omitted, the top 1000 results are retrieved."
+            matTooltipPosition="after"></mat-icon>
+    </form>
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="rank">
-            <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>
+                @if(searchType === 'top-1000') {
+                    Rank
+                }
+                @else if(searchType === 'search') {
+                    No.
+                }
+            </mat-header-cell>
             <mat-cell *matCellDef="let result"> {{ dataSource.data.indexOf(result) + 1 }} </mat-cell>
         </ng-container>
 
@@ -13,7 +53,7 @@
         </ng-container>
 
         <ng-container matColumnDef="startDatetime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Start Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date & Time </mat-header-cell>
             <mat-cell *matCellDef="let result"> {{ result.startDatetime.toLocaleString() }} </mat-cell>
         </ng-container>
 
@@ -24,12 +64,14 @@
 
         <ng-container matColumnDef="totalIncorrectGuesses">
             <mat-header-cell *matHeaderCellDef> Incorrect Guesses </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ result.incorrectGuessesPerWord.reduce(totalIncorrectGuessesReduce) }} </mat-cell>
+            <mat-cell *matCellDef="let result"> {{ result.incorrectGuessesPerWord.reduce(totalIncorrectGuessesReduce) }}
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="timePlayed">
             <mat-header-cell *matHeaderCellDef> Time Played </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ timePlayedConversion(result.startDatetime, result.endDatetime) }} </mat-cell>
+            <mat-cell *matCellDef="let result"> {{ timePlayedConversion(result.startDatetime, result.endDatetime) }}
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

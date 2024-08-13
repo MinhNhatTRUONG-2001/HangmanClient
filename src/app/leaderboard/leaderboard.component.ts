@@ -4,11 +4,22 @@ import { serverUrl } from '../server';
 import { PlayResult } from './play-result';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-leaderboard',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule],
+  providers: [provideNativeDateAdapter()],
+  imports: [
+    MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatDatepickerModule, ReactiveFormsModule, 
+    MatButtonModule, MatIconModule, MatTooltipModule
+  ],
   templateUrl: './leaderboard.component.html',
   styleUrl: './leaderboard.component.css'
 })
@@ -17,17 +28,15 @@ export class LeaderboardComponent {
   dataSource = new MatTableDataSource<PlayResult>()
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort
+  searchForm = new FormGroup({
+    'playerName': new FormControl(''),
+    'startDate': new FormControl<Date | null>(null),
+    'endDate': new FormControl<Date | null>(null),
+  })
+  searchType: 'top-1000' | 'search' = 'top-1000'
 
   constructor() {
-    fetch(`${serverUrl}/leaderboard/top-1000`)
-    .then(res => res.json())
-    .then(data => {
-      this.dataSource.data = data.map((result: PlayResult) => ({
-        ...result,
-        startDatetime: new Date(result.startDatetime),
-        endDatetime: new Date(result.endDatetime)
-      }))
-    })
+    this.fetchLeaderboardData(this.searchType)
   }
 
   ngAfterViewInit() {
@@ -53,5 +62,45 @@ export class LeaderboardComponent {
       return `${minutes}m ${remainingSeconds}s`
     }
     return `${timeInSeconds}s`
+  }
+
+  searchResults() {
+    if (!this.searchForm.value.playerName && !this.searchForm.value.startDate && !this.searchForm.value.endDate) {
+      this.fetchLeaderboardData('top-1000')
+    }
+    else {
+      this.fetchLeaderboardData('search')
+    }
+  }
+
+  fetchLeaderboardData(searchType: 'top-1000' | 'search') {
+    this.searchType = searchType
+    let endPoint = ''
+    if (searchType === 'top-1000') {
+      endPoint = 'top-1000'
+    }
+    else if (searchType === 'search') {
+      const queries = new URLSearchParams()
+      if (this.searchForm.value.playerName) {
+        queries.append('playerName', this.searchForm.value.playerName as string)
+      }
+      if (this.searchForm.value.startDate) {
+        queries.append('startDateRange', this.searchForm.value.startDate.toUTCString())
+      }
+      if (this.searchForm.value.endDate) {
+        queries.append('endDateRange', this.searchForm.value.endDate.toUTCString())
+      }
+      endPoint = 'search?' + queries
+    }
+    console.log(endPoint)
+    fetch(`${serverUrl}/leaderboard/${endPoint}`)
+    .then(res => res.json())
+    .then(data => {
+      this.dataSource.data = data.map((result: PlayResult) => ({
+        ...result,
+        startDatetime: new Date(result.startDatetime),
+        endDatetime: new Date(result.endDatetime)
+      }))
+    })
   }
 }
