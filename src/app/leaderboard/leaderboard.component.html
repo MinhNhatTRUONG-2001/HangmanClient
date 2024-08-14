@@ -2,6 +2,14 @@
     <h1>LEADERBOARD</h1>
     @if(searchType === 'top-1000') {
         <h2>Top 1000</h2>
+        <div id="ranking-rule-list">
+            <p><b>Ranking rule: </b>The results are ranked by the following order:</p>
+            <ol>
+                <li>Number of correct words (or rounds completed) - Descending</li>
+                <li>Total incorrect guesses - Ascending</li>
+                <li>Total time played - Ascending</li>
+            </ol>
+        </div>
     }
     @else if(searchType === 'search') {
         <h2>Search result</h2>
@@ -31,7 +39,7 @@
         <button id="search" mat-button type="submit">Search</button>
         <mat-icon
             fontIcon="info"
-            matTooltip="If all fields are omitted, the top 1000 results are retrieved."
+            matTooltip="You can search any result even if it is not in the top 1000 list. If all fields are omitted, the top 1000 results are retrieved."
             matTooltipPosition="after"></mat-icon>
     </form>
     <mat-table [dataSource]="dataSource" matSort>
@@ -48,7 +56,7 @@
         </ng-container>
 
         <ng-container matColumnDef="playerName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Player Name </mat-header-cell>
             <mat-cell *matCellDef="let result"> {{ result.playerName }} </mat-cell>
         </ng-container>
 

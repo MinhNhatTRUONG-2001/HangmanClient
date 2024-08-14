@@ -1,0 +1,14 @@
+main {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 54px;
+}
+
+div {
+    margin-left: 15vw;
+    margin-right: 15vw;
+}

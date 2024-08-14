@@ -45,41 +45,44 @@ export class FigureComponent implements AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) { //Draw the human figure based on 'lives' changes
     if (changes['lives'] && changes['lives'].currentValue !== changes['lives'].previousValue) {
       switch (this.lives) {
+        case 6: //Reset figure
+          this.draw.clearRect(149, 24, 51, 125)
+          break
         case 5: //Head
-          this.draw.beginPath();
-          this.draw.arc(175, 40, 15, 0, 2 * Math.PI);
-          this.draw.stroke();
-          break;
+          this.draw.beginPath()
+          this.draw.arc(175, 40, 15, 0, 2 * Math.PI)
+          this.draw.stroke()
+          break
         case 4: //Body
-          this.draw.beginPath();
-          this.draw.moveTo(175, 55);
-          this.draw.lineTo(175, 100);
-          this.draw.stroke();
-          break;
+          this.draw.beginPath()
+          this.draw.moveTo(175, 55)
+          this.draw.lineTo(175, 100)
+          this.draw.stroke()
+          break
         case 3: //Left arm
-          this.draw.beginPath();
-          this.draw.moveTo(175, 60);
-          this.draw.lineTo(150, 85);
-          this.draw.stroke();
-          break;
+          this.draw.beginPath()
+          this.draw.moveTo(175, 60)
+          this.draw.lineTo(150, 85)
+          this.draw.stroke()
+          break
         case 2: //Right arm
-          this.draw.beginPath();
-          this.draw.moveTo(175, 60);
-          this.draw.lineTo(200, 85);
-          this.draw.stroke();
-          break;
+          this.draw.beginPath()
+          this.draw.moveTo(175, 60)
+          this.draw.lineTo(200, 85)
+          this.draw.stroke()
+          break
         case 1: //Left leg
-          this.draw.beginPath();
-          this.draw.moveTo(175, 100);
-          this.draw.lineTo(150, 135);
-          this.draw.stroke();
-          break;
+          this.draw.beginPath()
+          this.draw.moveTo(175, 100)
+          this.draw.lineTo(150, 135)
+          this.draw.stroke()
+          break
         case 0: //Right leg
-          this.draw.beginPath();
-          this.draw.moveTo(175, 100);
-          this.draw.lineTo(200, 135);
-          this.draw.stroke();
-          break;
+          this.draw.beginPath()
+          this.draw.moveTo(175, 100)
+          this.draw.lineTo(200, 135)
+          this.draw.stroke()
+          break
       }
     }
   }

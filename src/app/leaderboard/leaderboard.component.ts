@@ -92,7 +92,6 @@ export class LeaderboardComponent {
       }
       endPoint = 'search?' + queries
     }
-    console.log(endPoint)
     fetch(`${serverUrl}/leaderboard/${endPoint}`)
     .then(res => res.json())
     .then(data => {

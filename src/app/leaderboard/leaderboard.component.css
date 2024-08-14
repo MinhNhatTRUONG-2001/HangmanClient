@@ -17,6 +17,7 @@ mat-table, mat-paginator {
 }
 
 mat-header-cell, mat-cell {
+    font-size: 15px;
     justify-content: center;
 }
 
@@ -37,4 +38,10 @@ button#search {
 mat-form-field {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+#ranking-rule-list {
+    margin-left: 35vw;
+    margin-right: 35vw;
+    text-align: left;
 }
