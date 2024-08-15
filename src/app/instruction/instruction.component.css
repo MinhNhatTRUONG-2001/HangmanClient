@@ -9,6 +9,27 @@ h1 {
 }
 
 div {
+    text-align: start;
     margin-left: 15vw;
     margin-right: 15vw;
+}
+
+ol > li::marker {
+    font-weight: bold;
+}
+
+img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+#ui {
+    width: 70vw;
+    height: auto;
+}
+
+#gameover-form {
+    width: 40vw;
+    height: auto;
 }

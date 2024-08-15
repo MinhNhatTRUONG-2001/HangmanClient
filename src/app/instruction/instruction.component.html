@@ -2,13 +2,35 @@
     <h1>INSTRUCTION</h1>
     <div>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia, turpis eu varius condimentum,
-         est metus vestibulum enim, ut sollicitudin nulla est vitae turpis. Phasellus auctor nunc sit amet magna tristique, 
-         at consequat felis rhoncus. In auctor lorem ac mauris vehicula sagittis. Curabitur vitae sapien in enim placerat lacinia.
-         Phasellus venenatis porttitor metus, vitae posuere elit accumsan id. Pellentesque metus magna, varius non porttitor eget,
-         feugiat eu erat. Etiam gravida eros eget ante aliquet, sed ultricies odio sagittis. Nam pharetra tempus magna, vitae 
-         vehicula velit consequat nec.
+            In each round of this game, you need to guess a word or phrase based on its topic (as a hint) by selecting letters. 
+            For every word or phrase, you have 6 lives corresponding to 6 attempts to guess. If the number of lives is down to
+            0 in any round, the game is over.
         </p>
+        <p>The game UI contains following parts, as seen in the figure below:</p>
+        <img id="ui" src="hangman-ui.png" alt="Hangman UI">
+        <ol>
+            <li>
+                <b>Lives: </b>The number of lives left. If it is smaller than 3, it will be red color to indicate the player has
+                low lives.
+            </li>
+            <li><b>Round: </b>The current playing round.</li>
+            <li><b>Topic: </b>The topic that associated to the hidden word.</li>
+            <li><b>Figure: </b>The image representation of the lives.</li>
+            <li>
+                <b>Hidden word: </b>Only English alphabet characters are hidden as underscores. If you correctly guesses a letter,
+                it will be shown here.
+            </li>
+            <li>
+                <b>Game status: </b>Each time you guess a letter, when you solve a word, or when the game is over, a textual status
+                will be shown here.
+                <p>In case that the game is over, you need to enter your name to save your result.</p>
+                <img id="gameover-form" src="hangman-gameover-form.png" alt="Gameover form">
+            </li>
+            <li>
+                <b>Letter buttons: </b>This is where you guess the letters in a word. The gray buttons are the previously selected
+                letters.
+            </li>
+        </ol>
     </div>
 </main>
 
