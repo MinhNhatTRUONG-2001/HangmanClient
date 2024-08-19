@@ -46,7 +46,9 @@ export class FigureComponent implements AfterViewInit, OnChanges {
     if (changes['lives'] && changes['lives'].currentValue !== changes['lives'].previousValue) {
       switch (this.lives) {
         case 6: //Reset figure
-          this.draw.clearRect(149, 24, 51, 125)
+          if (this.draw) {
+            this.draw.clearRect(149, 24, 51, 125)
+          }
           break
         case 5: //Head
           this.draw.beginPath()

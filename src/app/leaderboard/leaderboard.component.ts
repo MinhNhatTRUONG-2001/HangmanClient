@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { serverUrl } from '../server';
 import { PlayResult } from './play-result';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -11,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-leaderboard',
@@ -92,7 +92,7 @@ export class LeaderboardComponent {
       }
       endPoint = 'search?' + queries
     }
-    fetch(`${serverUrl}/leaderboard/${endPoint}`)
+    fetch(`${environment.serverUrl}/leaderboard/${endPoint}`)
     .then(res => res.json())
     .then(data => {
       this.dataSource.data = data.map((result: PlayResult) => ({

@@ -5,7 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { maxLives } from '../play.component';
 import { Router } from '@angular/router';
-import { serverUrl } from '../../server';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-word-letters',
@@ -112,7 +112,7 @@ export class WordLettersComponent implements AfterViewInit, OnChanges {
       endDatetime: this.endDatetime
     }
     console.log(requestBody)
-    fetch(`${serverUrl}/leaderboard`, {
+    fetch(`${environment.serverUrl}/leaderboard`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

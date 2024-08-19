@@ -1,20 +1,20 @@
-@if (currentWord) {
-    <app-round-info [round]="currentRound" [lives]="lives" [topic]="currentWord.topic.name"></app-round-info>
+@if (isLoading) {
+    <div>Loading...</div>
 }
-<mat-grid-list cols="2" rowHeight="10:9">
-    <mat-grid-tile colspan="1" rowspan="1">
-        <app-figure [lives]="lives"></app-figure>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">
-        @if (currentWord) {
-            <app-word-letters
-                [totalWords]="totalWords"
-                [word]="currentWord.word"
-                [lives]="lives"
-                [round]="currentRound"
-                [startDatetime]="startDatetime"
-                (nextRoundEvent)="nextRound()"
-                (decreaseLivesEvent)="decreaseLives()"></app-word-letters>
-        }
-    </mat-grid-tile>
-</mat-grid-list>
+<main>
+    @if (!isLoading) {
+        <app-round-info [round]="currentRound" [lives]="lives" [topic]="currentWord.topic.name"></app-round-info>
+    }
+    <mat-grid-list cols="2" rowHeight="10:9">
+        <mat-grid-tile colspan="1" rowspan="1">
+            <app-figure [lives]="lives"></app-figure>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+            @if (!isLoading) {
+                <app-word-letters [totalWords]="totalWords" [word]="currentWord.word" [lives]="lives" [round]="currentRound"
+                    [startDatetime]="startDatetime" (nextRoundEvent)="nextRound()"
+                    (decreaseLivesEvent)="decreaseLives()"></app-word-letters>
+            }
+        </mat-grid-tile>
+    </mat-grid-list>
+</main>
