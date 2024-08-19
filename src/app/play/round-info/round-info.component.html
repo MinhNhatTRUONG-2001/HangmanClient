@@ -1,5 +1,6 @@
-<mat-grid-list cols="3" rowHeight="10:1">
-    <mat-grid-tile colspan="1" rowspan="1">Lives:&nbsp;
+<mat-grid-list cols="10" rowHeight="10:4">
+    <mat-grid-tile colspan="1" rowspan="1"><button mat-button id="quit" (click)="quitGame()">Quit</button></mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">Lives:&nbsp;
         @if (lives < 3) {
             <strong class="low-lives">{{ lives }}</strong>
         }
@@ -7,6 +8,6 @@
             <strong>{{ lives }}</strong>
         }
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">Round:&nbsp;<strong>{{ round }}</strong></mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">Topic:&nbsp;<strong>{{ topic }}</strong></mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">Round:&nbsp;<strong>{{ round }}</strong></mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">Topic:&nbsp;<strong>{{ topic }}</strong></mat-grid-tile>
 </mat-grid-list>

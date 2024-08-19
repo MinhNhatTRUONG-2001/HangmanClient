@@ -30,7 +30,7 @@ export class PlayComponent {
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload($event: any): void {
     $event.preventDefault()
-    $event.returnValue = 'Are you sure you want to leave? Your progress will not be saved.'
+    $event.returnValue = 'Are you sure you want to quit? Your progress will not be saved.'
   }
 
   constructor() {

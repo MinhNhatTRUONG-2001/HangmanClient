@@ -11,6 +11,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leaderboard',
@@ -31,17 +32,21 @@ export class LeaderboardComponent {
   searchForm = new FormGroup({
     'playerName': new FormControl(''),
     'startDate': new FormControl<Date | null>(null),
-    'endDate': new FormControl<Date | null>(null),
+    'endDate': new FormControl<Date | null>(null)
   })
   searchType: 'top-1000' | 'search' = 'top-1000'
 
-  constructor() {
+  constructor(private router: Router) {
     this.fetchLeaderboardData(this.searchType)
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort
+  }
+
+  backToMainMenu() {
+    this.router.navigateByUrl('')
   }
 
   totalIncorrectGuessesReduce(total: number, value: number) {
