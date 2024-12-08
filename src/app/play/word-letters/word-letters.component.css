@@ -1,10 +1,10 @@
 
-@media only screen and (orientation: landscape) {
-    section {
-        margin-top: 10vh;
-        margin-bottom: 5vh;
-    }
+section {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
 
+@media only screen and (orientation: landscape) {
     #blanks {
         font-size: 3vw;
         letter-spacing: 3px;
@@ -36,11 +36,6 @@
 }
 
 @media only screen and (orientation: portrait) {
-    section {
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-    }
-    
     #blanks {
         font-size: 5vw;
         letter-spacing: 3px;

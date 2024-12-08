@@ -43,51 +43,53 @@
             matTooltip="You can search any result even if it is not in the top 1000 list. If all fields are omitted, the top 1000 results are retrieved."
             matTooltipPosition="after"></mat-icon>
     </form>
-    <mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="rank">
-            <mat-header-cell *matHeaderCellDef>
-                @if(searchType === 'top-1000') {
-                    Rank
-                }
-                @else if(searchType === 'search') {
-                    No.
-                }
-            </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ dataSource.data.indexOf(result) + 1 }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="playerName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Player Name </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ result.playerName }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="startDatetime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date & Time </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ result.startDatetime.toLocaleString() }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="correctWords">
-            <mat-header-cell *matHeaderCellDef> Correct Words </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ result.correctWords }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="totalIncorrectGuesses">
-            <mat-header-cell *matHeaderCellDef> Incorrect Guesses </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ result.incorrectGuessesPerWord.reduce(totalIncorrectGuessesReduce) }}
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="timePlayed">
-            <mat-header-cell *matHeaderCellDef> Time Played </mat-header-cell>
-            <mat-cell *matCellDef="let result"> {{ timePlayedConversion(result.startDatetime, result.endDatetime) }}
-            </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        <tr class="mat-no-data-row" *matNoDataRow>
-            <td class="mat-no-data-cell" colspan="6">No data found</td>
-        </tr>
-    </mat-table>
+    <div class="table-responsive">
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="rank">
+                <mat-header-cell *matHeaderCellDef>
+                    @if(searchType === 'top-1000') {
+                        Rank
+                    }
+                    @else if(searchType === 'search') {
+                        No.
+                    }
+                </mat-header-cell>
+                <mat-cell *matCellDef="let result"> {{ dataSource.data.indexOf(result) + 1 }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="playerName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Player Name </mat-header-cell>
+                <mat-cell *matCellDef="let result"> {{ result.playerName }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="startDatetime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date & Time </mat-header-cell>
+                <mat-cell *matCellDef="let result"> {{ result.startDatetime.toLocaleString() }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="correctWords">
+                <mat-header-cell *matHeaderCellDef> Correct Words </mat-header-cell>
+                <mat-cell *matCellDef="let result"> {{ result.correctWords }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="totalIncorrectGuesses">
+                <mat-header-cell *matHeaderCellDef> Incorrect Guesses </mat-header-cell>
+                <mat-cell *matCellDef="let result"> {{ result.incorrectGuessesPerWord.reduce(totalIncorrectGuessesReduce) }}
+                </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="timePlayed">
+                <mat-header-cell *matHeaderCellDef> Time Played </mat-header-cell>
+                <mat-cell *matCellDef="let result"> {{ timePlayedConversion(result.startDatetime, result.endDatetime) }}
+                </mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <tr class="mat-no-data-row" *matNoDataRow>
+                <td class="mat-no-data-cell" colspan="6">No data found</td>
+            </tr>
+        </mat-table>
+    </div>
     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons aria-label="Select page"></mat-paginator>
 </main>

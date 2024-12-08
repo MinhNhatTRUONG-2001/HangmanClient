@@ -43,15 +43,15 @@ export class PlayComponent {
   @HostListener('window:resize')
   onResize() {
     this.windowWidth = window.innerWidth
-    if (window.innerWidth >= 1200) {
+    if (window.innerWidth >= 1200 && window.innerWidth > window.innerHeight) {
       this.screenOrientation = "landscape-primary"
       this.gridRowHeight = "10:9"
     }
-    else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+    else if (window.innerWidth >= 992 && window.innerWidth < 1200 && window.innerWidth > window.innerHeight) {
       this.screenOrientation = "landscape-primary"
       this.gridRowHeight = "10:12"
     }
-    else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+    else if (window.innerWidth >= 768 && window.innerWidth < 992 && window.innerWidth > window.innerHeight) {
       this.screenOrientation = "landscape-primary"
       this.gridRowHeight = "10:16"
     }
@@ -77,15 +77,15 @@ export class PlayComponent {
       this.isLoading = false
     })
 
-    if (window.innerWidth >= 1200) {
+    if (window.innerWidth >= 1200 && window.innerWidth > window.innerHeight) {
       this.screenOrientation = "landscape-primary"
       this.gridRowHeight = "10:9"
     }
-    else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+    else if (window.innerWidth >= 992 && window.innerWidth < 1200 && window.innerWidth > window.innerHeight) {
       this.screenOrientation = "landscape-primary"
       this.gridRowHeight = "10:12"
     }
-    else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+    else if (window.innerWidth >= 768 && window.innerWidth < 992 && window.innerWidth > window.innerHeight) {
       this.screenOrientation = "landscape-primary"
       this.gridRowHeight = "10:16"
     }
