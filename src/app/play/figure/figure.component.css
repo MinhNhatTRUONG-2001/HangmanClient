@@ -1,4 +1,11 @@
-#hangman-figure {
-    width: 50vw;
-    height: 60vh;
+@media only screen and (orientation: landscape) {
+    #hangman-figure {
+        width: 50vw;
+        height: 60vh;
+    }
+}
+@media only screen and (orientation: portrait) {
+    #hangman-figure {
+        width: 100vw;
+    }
 }

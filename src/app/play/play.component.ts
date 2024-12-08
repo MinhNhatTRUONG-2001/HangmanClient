@@ -26,11 +26,38 @@ export class PlayComponent {
   currentRound: number = 1
   startDatetime: Date = new Date()
   isLoading: boolean = true
+  screenOrientation: string = screen.orientation.type
+  windowWidth: number = window.innerWidth
+  gridRowHeight: string = "10:9"
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload($event: any): void {
     $event.preventDefault()
     $event.returnValue = 'Are you sure you want to quit? Your progress will not be saved.'
+  }
+  @HostListener('window:orientationchange')
+  onOrientationChange() {
+    this.screenOrientation = screen.orientation.type
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.windowWidth = window.innerWidth
+    if (window.innerWidth >= 1200) {
+      this.screenOrientation = "landscape-primary"
+      this.gridRowHeight = "10:9"
+    }
+    else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+      this.screenOrientation = "landscape-primary"
+      this.gridRowHeight = "10:12"
+    }
+    else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+      this.screenOrientation = "landscape-primary"
+      this.gridRowHeight = "10:16"
+    }
+    else {
+      this.screenOrientation = "portrait-primary"
+    }
   }
 
   constructor() {
@@ -49,6 +76,22 @@ export class PlayComponent {
       console.log(e)
       this.isLoading = false
     })
+
+    if (window.innerWidth >= 1200) {
+      this.screenOrientation = "landscape-primary"
+      this.gridRowHeight = "10:9"
+    }
+    else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+      this.screenOrientation = "landscape-primary"
+      this.gridRowHeight = "10:12"
+    }
+    else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+      this.screenOrientation = "landscape-primary"
+      this.gridRowHeight = "10:16"
+    }
+    else {
+      this.screenOrientation = "portrait-primary"
+    }
   }
 
   decreaseLives() {

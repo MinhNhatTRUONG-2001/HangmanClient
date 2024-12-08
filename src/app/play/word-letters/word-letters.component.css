@@ -1,40 +1,78 @@
 
-section {
-    padding-top: 5%;
-    padding-bottom: 5%;
+@media only screen and (orientation: landscape) {
+    section {
+        margin-top: 10vh;
+        margin-bottom: 5vh;
+    }
+
+    #blanks {
+        font-size: 3vw;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+
+    #game-status {
+        font-size: 1.5vw;
+        text-align: center;
+    }
+
+    button.primary {
+        height: 6vh;
+        margin: 10px;
+        background-color: var(--primary-color);
+        border-radius: 10px;
+        font-size: 3vh;
+        color: azure;
+    }
+
+    button.secondary {
+        height: 6vh;
+        margin: 10px;
+        background-color: var(--tertiary-color);
+        border-radius: 10px;
+        font-size: 3vh;
+        color: azure;
+    }
 }
 
-#blanks {
-    font-size: 40px;
-    letter-spacing: 3px;
-    text-align: center;
-}
-
-#game-status {
-    font-size: 24px;
-    text-align: center;
+@media only screen and (orientation: portrait) {
+    section {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+    
+    #blanks {
+        font-size: 5vw;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+    
+    #game-status {
+        font-size: 4vw;
+        text-align: center;
+    }
+    
+    button.primary {
+        height: 5vh;
+        margin: 1vw;
+        background-color: var(--primary-color);
+        border-radius: 2vw;
+        font-size: 2.5vh;
+        color: azure;
+    }
+    
+    button.secondary {
+        height: 5vh;
+        margin: 2vw;
+        background-color: var(--tertiary-color);
+        border-radius: 2vw;
+        font-size: 2vh;
+        color: azure;
+    }
 }
 
 #letter-buttons {
     text-align: center;
-}
-
-button.primary {
-    height: 60px;
-    margin: 15px;
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    font-size: 24px;
-    color: azure;
-}
-
-button.secondary {
-    height: 50px;
-    margin: 10px;
-    background-color: var(--tertiary-color);
-    border-radius: 10px;
-    font-size: 20px;
-    color: azure;
 }
 
 .error-message {
